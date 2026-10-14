@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comfort Jaya - A Special Message For You</title>
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts for cute typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Sacramento&display=swap" rel="stylesheet">
+    <!-- FontAwesome for cute icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        quicksand: ['Quicksand', 'sans-serif'],
+                        sacramento: ['Sacramento', 'cursive'],
+                    },
+                    colors: {
+                        pastelPink: '#ffd1dc',
+                        pastelPeach: '#ffe5b4',
+                        pastelPurple: '#e6e6fa',
+                        softRed: '#ff6b81',
+                        warmYellow: '#fff9e6'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(135deg, #fff0f3 0%, #ffe8ec 50%, #f3e8ff 100%);
+            overflow-x: hidden;
+            touch-action: manipulation;
+        }
+
+        /* Floating Hearts Background Animation */
+        .floating-heart {
+            position: absolute;
+            color: rgba(255, 107, 129, 0.45);
+            animation: floatUp 6s linear infinite;
+            z-index: 0;
+            user-select: none;
+            pointer-events: none;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh) scale(0.6) rotate(0deg);
+                opacity: 0;
+            }
+            20% {
+                opacity: 0.85;
+            }
+            80% {
+                opacity: 0.85;
+            }
+            100% {
+                transform: translateY(-10vh) scale(1.2) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Flower petal falling animation */
+        .petal {
+            position: absolute;
+            background: #ffb7c5;
+            border-radius: 150% 0 150% 0;
+            animation: fallPetal linear infinite;
+            z-index: 50;
+            pointer-events: none;
+        }
+
+        @keyframes fallPetal {
+            0% {
+                transform: translateY(-10vh) rotate(0deg) translateX(0);
+                opacity: 1;
+            }
+            50% {
+                transform: translateY(50vh) rotate(180deg) translateX(30px);
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(110vh) rotate(360deg) translateX(-20px);
+                opacity: 0;
+            }
+        }
+
+        /* Custom soft card shadow */
+        .card-shadow {
+            box-shadow: 0 10px 30px rgba(255, 182, 193, 0.35);
+        }
+
+        #modal-icon-container {
+            background: transparent;
+            overflow: visible;
+        }
+
+        #modal-gif {
+            background: transparent;
+            display: block;
+            border: 0;
+            box-shadow: none;
+        }
+
+        #page-2 h2 {
+            font-size: clamp(2.3rem, 6vw, 3.5rem);
+        }
+
+        #page-2 .love-letter-box {
+            font-size: 1.02rem;
+            line-height: 1.8;
+            max-height: 22rem;
+        }
+
+        #modal-card {
+            width: min(92vw, 440px);
+            padding: 1.6rem;
+        }
+
+        #modal-title {
+            font-size: clamp(2rem, 6vw, 2.8rem);
+            line-height: 1.15;
+        }
+
+        #modal-text {
+            font-size: 1.08rem;
+            line-height: 1.7;
+        }
+
+        @keyframes modalEnter {
+            0% {
+                opacity: 0;
+                transform: translateY(24px) scale(0.94);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .modal-enter {
+            animation: modalEnter 0.45s ease-out forwards;
+        }
+
+        /* Glow & bounce button effects */
+        .glow-btn {
+            transition: all 0.3s ease;
+        }
+        .glow-btn:hover {
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 8px 25px rgba(255, 107, 129, 0.4);
+        }
+
+        /* Shake animation for 'No' button */
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-6px); }
+            40%, 80% { transform: translateX(6px); }
+        }
+        .shake {
+            animation: shake 0.4s ease-in-out;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-center relative p-4 selection:bg-pink-200">
+
+    <!-- Background Floating Hearts Container -->
+    <div id="heart-container" class="absolute inset-0 overflow-hidden pointer-events-none"></div>
+
+    <!-- MAIN CONTAINER -->
+    <main class="w-full max-w-md mx-auto z-10 relative">
+
+        <!-- ================= PAGE 1: COMFORTING INTRO ================= -->
+        <div id="page-1" class="bg-white/90 backdrop-blur-md rounded-3xl p-8 card-shadow border-4 border-pink-100 text-center transition-all duration-500">
+            <!-- Large Milk & Mocha Bear Couple GIF (No Circular Border/Clipping) -->
+            <div class="flex items-center justify-center mx-auto mb-4">
+                <img src="https://media.tenor.com/TIqmOGZBPHgAAAAM/milk-and-mocha-bear-couple.gif" alt="Milk and Mocha Bear Couple" class="w-64 h-64 object-contain drop-shadow-sm" onerror="this.src='https://placehold.co/240x240/ffe8ec/ff6b81?text=💖'">
+            </div>
+
+            <h1 class="text-3xl font-bold text-gray-800 mb-3">
+                Don't be sad, <span class="text-pink-500 font-sacramento text-4xl font-normal">baby Jaya</span>
+            </h1>
+
+            <p class="text-gray-600 mb-8 text-sm leading-relaxed px-2">
+                I know things feel heavy right now and you're dealing with a problem, but I'm holding your hand through it all. Take a deep breath with me... 🌸
+            </p>
+
+            <!-- Choice Buttons -->
+            <div class="space-y-3">
+                <button onclick="goToPage2()" class="w-full bg-gradient-to-r from-pink-400 to-rose-400 text-white font-semibold py-3.5 px-6 rounded-2xl glow-btn flex items-center justify-center space-x-2 text-base shadow-md">
+                    <span>Okay baby 💕</span>
+                </button>
+
+                <button id="no-btn" onclick="handleNoClick()" class="w-full bg-gray-100 hover:bg-pink-50 text-gray-600 hover:text-pink-600 font-medium py-3 px-6 rounded-2xl transition-all duration-200 text-sm border border-gray-200">
+                    No
+                </button>
+            </div>
+        </div>
+
+
+        <!-- ================= PAGE 2: HEARTFELT MESSAGE & SURPRISES ================= -->
+        <div id="page-2" class="hidden bg-white/95 backdrop-blur-md rounded-3xl p-6 md:p-8 card-shadow border-4 border-pink-100 text-center transition-all duration-500">
+            <!-- Header Ribbon -->
+            <div class="inline-block bg-pink-100 text-pink-600 text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full mb-4 border border-pink-200">
+                A Letter Just For You ✨
+            </div>
+
+            <h2 class="text-2xl font-bold text-gray-800 mb-4 font-sacramento text-4xl text-pink-500">
+                My Dearest Jaya,
+            </h2>
+
+            <!-- Scrollable Love Letter Box -->
+            <div class="bg-gradient-to-b from-pink-50/50 to-purple-50/30 rounded-2xl p-5 mb-6 text-left border border-pink-100 max-h-60 overflow-y-auto text-gray-700 text-sm leading-relaxed shadow-inner">
+                <p class="mb-3">
+                    Hello baby wahhh smile ka na okay wag na maging sad ha, i know baby your not okay right now so i made this baby just for you, and to make you happy baby wahhhhh, i know na di pa kita macomfort ngayon in person kasi malayo ako sayo but baby I know na kinakaya mo baby ko pero wag mo ko kakalimutan ha if di mo na kaya talaga andito me okay, handa kitang damayan baby at samahan na lutasin natin ang problema mo baby ko, wag ka na malungkot ha baby always remember baby na mahal na mahal kita.
+                </p>
+                <p class="mb-3">
+                    baby click mo yung two buttons sa baby baby may surprise me sayo.
+                </p>
+               
+            </div>
+
+            <p class="text-xs text-gray-500 mb-4 font-medium">Click below for your special treats! 👇</p>
+
+            <!-- Interactive Surprise Buttons -->
+            <div class="grid grid-cols-2 gap-3 mb-4">
+                <!-- Flowers Button -->
+                <button onclick="triggerFlowers()" class="bg-gradient-to-br from-rose-400 to-pink-500 hover:from-rose-500 hover:to-pink-600 text-white font-semibold py-3.5 px-4 rounded-2xl shadow-lg glow-btn flex flex-col items-center justify-center space-y-1">
+                    
+                    <span class="text-xs uppercase tracking-wide">Gift 1</span>
+                </button>
+
+                <!-- Hello Kitty Button -->
+                <button onclick="triggerHelloKitty()" class="bg-gradient-to-br from-red-400 to-pink-400 hover:from-red-500 hover:to-pink-500 text-white font-semibold py-3.5 px-4 rounded-2xl shadow-lg glow-btn flex flex-col items-center justify-center space-y-1">
+                 
+                    <span class="text-xs uppercase tracking-wide">Gift 2</span>
+                </button>
+            </div>
+
+            <!-- Back to start -->
+            <button onclick="resetApp()" class="text-xs text-gray-400 hover:text-pink-500 transition-colors underline">
+                Back to start ↺
+            </button>
+        </div>
+
+    </main>
+
+
+    <!-- ================= CUSTOM POPUP MODAL ================= -->
+    <div id="custom-modal" class="fixed inset-0 bg-black/20 backdrop-blur-[1px] z-50 flex items-center justify-center p-4 hidden opacity-0 transition-opacity duration-300">
+        <div id="modal-card" class="bg-white rounded-3xl p-6 max-w-sm w-full card-shadow border-2 border-pink-200 text-center transform scale-90 transition-transform duration-300">
+            <!-- Modal GIF Container -->
+            <div id="modal-icon-container" class="flex justify-center items-center mb-3">
+                <img id="modal-gif" src="https://i.pinimg.com/originals/4d/d7/60/4dd76056feee92a2f0e669afc2361678.gif" alt="Cute GIF" class="w-52 h-52 object-contain rounded-2xl drop-shadow-sm" onerror="this.src='https://placehold.co/200x200/ffe8ec/ff6b81?text=💖'">
+            </div>
+            <h3 id="modal-title" class="text-2xl font-bold text-gray-800 mb-2">Why? 🥺</h3>
+            <p id="modal-text" class="text-gray-600 text-sm mb-6 leading-relaxed">You are so loved, precious Jaya! Everything is going to be okay! ✨</p>
+            <button onclick="closeModal()" class="w-full bg-pink-400 hover:bg-pink-500 text-white font-semibold py-3 px-6 rounded-xl shadow-md transition-all">
+                Yay, thank you! 💖
+            </button>
+        </div>
+    </div>
+
+    <audio id="love-song" loop preload="auto" src="daylight.mp3"></audio>
+
+    <!-- ================= JAVASCRIPT LOGIC ================= -->
+    <script>
+        // Array of persuasive comfort messages when clicking "No, still sad 🥺"
+        const noResponses = [
+            "I Prepared a Special Surprise Just for You! 🌸",
+            "My heart breaks a little when you're sad! Let me make you smile? 🥺",
+            "No is not an option when my baby Jaya deserves all the happiness! 🌸",
+            "Sending the biggest warm hug right through the screen! Ready? 🤗"
+        ];
+        let noClickCount = 0;
+
+        // Image URLs
+        const SAD_CAT_GIF = "https://i.pinimg.com/originals/e4/8b/19/e48b194083622deba99454f55cf1a781.gif";
+        const DANCING_HELLO_KITTY_GIF = "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/dcb5f0e5-306a-45a8-8a79-6e7073a33376/d6uvo9y-4bcfa515-0639-4766-af97-c3c60fb1839c.gif?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiIvZi9kY2I1ZjBlNS0zMDZhLTQ1YTgtOGE3OS02ZTcwNzNhMzMzNzYvZDZ1dm85eS00YmNmYTUxNS0wNjM5LTQ3NjYtYWY5Ny1jM2M2MGZiMTgzOWMuZ2lmIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.KwPXdn5P6NVLyaVGYpQXO87mcWw_GZ91RLFiITRmvWM";
+        const FLOWER_BOUQUET_GIF = "https://i.pinimg.com/originals/71/02/e1/7102e1771b31ce3665a3f15522a603b6.gif";
+
+        // Create floating hearts on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            createFloatingHearts();
+        });
+
+        function createFloatingHearts() {
+            const container = document.getElementById('heart-container');
+            const heartSymbols = ['❤️', '💖', '🌸', '✨', '💕', '🌷', '🎀'];
+            
+            for (let i = 0; i < 18; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'floating-heart';
+                heart.innerHTML = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDuration = (4 + Math.random() * 4) + 's';
+                heart.style.animationDelay = (Math.random() * 5) + 's';
+                heart.style.fontSize = (16 + Math.random() * 20) + 'px';
+                container.appendChild(heart);
+            }
+        }
+
+        // Handle "No, still sad" button click
+        function handleNoClick() {
+            const noBtn = document.getElementById('no-btn');
+            noBtn.classList.add('shake');
+            setTimeout(() => noBtn.classList.remove('shake'), 400);
+
+            const message = noResponses[noClickCount % noResponses.length];
+            noClickCount++;
+            
+            showModal("Why?", message, SAD_CAT_GIF);
+        }
+
+        function playLoveSong() {
+            const audio = document.getElementById('love-song');
+            if (!audio) return;
+
+            audio.volume = 0.45;
+            audio.muted = false;
+            audio.currentTime = 0;
+            audio.play().catch(() => {});
+        }
+
+        function stopLoveSong() {
+            const audio = document.getElementById('love-song');
+            if (!audio) return;
+            audio.pause();
+            audio.currentTime = 0;
+        }
+
+        // Transition to Page 2 (Letter & Buttons)
+        function goToPage2() {
+            const page1 = document.getElementById('page-1');
+            const page2 = document.getElementById('page-2');
+
+            page1.classList.add('opacity-0', 'scale-95');
+            setTimeout(() => {
+                page1.classList.add('hidden');
+                page2.classList.remove('hidden');
+                page2.classList.add('opacity-100', 'scale-100');
+                playLoveSong();
+            }, 300);
+        }
+
+        // Reset back to main page
+        function resetApp() {
+            const page1 = document.getElementById('page-1');
+            const page2 = document.getElementById('page-2');
+
+            page2.classList.add('hidden');
+            page1.classList.remove('hidden', 'opacity-0', 'scale-95');
+            stopLoveSong();
+            noClickCount = 0;
+        }
+
+        // Flowers Button Trigger
+        function triggerFlowers() {
+            showModal( "Flowers For you"," Hello ate jaya, pinapabigay po ni kuya mj sayo flowers!", FLOWER_BOUQUET_GIF);
+            createFallingPetals();
+        }
+
+        // Hello Kitty Button Trigger (Using Dancing Hello Kitty GIF)
+        function triggerHelloKitty() {
+            showModal("🐱 It's me Hello Kitty", "“Hello ate jaya sabi ni kuya mj is pasayahin kita kaya andito me ngayon nasayaw ako para mapasaya ka ate jaya, wag ka na malungkot okay. 🎀✨", DANCING_HELLO_KITTY_GIF);
+        }
+
+        // Falling Petals animation
+        function createFallingPetals() {
+            for (let i = 0; i < 30; i++) {
+                const petal = document.createElement('div');
+                petal.className = 'petal';
+                petal.style.left = Math.random() * 100 + 'vw';
+                petal.style.width = (10 + Math.random() * 15) + 'px';
+                petal.style.height = (15 + Math.random() * 20) + 'px';
+                petal.style.animationDuration = (3 + Math.random() * 3) + 's';
+                petal.style.animationDelay = (Math.random() * 0.5) + 's';
+                document.body.appendChild(petal);
+
+                setTimeout(() => {
+                    petal.remove();
+                }, 6000);
+            }
+        }
+
+        function playMessageChime() {
+            const AudioCtx = window.AudioContext || window.webkitAudioContext;
+            if (!AudioCtx) return;
+
+            const audioContext = new AudioCtx();
+            const notes = [523.25, 659.25];
+
+            notes.forEach((freq, index) => {
+                const oscillator = audioContext.createOscillator();
+                const gainNode = audioContext.createGain();
+
+                oscillator.type = 'sine';
+                oscillator.frequency.value = freq;
+                gainNode.gain.value = 0.0001;
+
+                oscillator.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+
+                const startTime = audioContext.currentTime + index * 0.08;
+                oscillator.start(startTime);
+                gainNode.gain.linearRampToValueAtTime(0.06, startTime + 0.03);
+                gainNode.gain.exponentialRampToValueAtTime(0.0001, startTime + 0.22);
+                oscillator.stop(startTime + 0.24);
+            });
+
+            setTimeout(() => {
+                audioContext.close().catch(() => {});
+            }, 400);
+        }
+
+        // Open Modal
+        function showModal(title, text, gifUrl) {
+            document.getElementById('modal-title').innerText = title;
+            document.getElementById('modal-text').innerText = text;
+
+            const modalGif = document.getElementById('modal-gif');
+            if (gifUrl) {
+                modalGif.src = gifUrl;
+            }
+
+            const modal = document.getElementById('custom-modal');
+            const card = document.getElementById('modal-card');
+
+            card.classList.remove('modal-enter');
+            modal.classList.remove('hidden');
+            void modal.offsetWidth;
+            modal.classList.remove('opacity-0');
+            card.classList.remove('scale-90');
+            card.classList.add('scale-100');
+            card.classList.add('modal-enter');
+            playMessageChime();
+        }
+
+        // Close Modal
+        function closeModal() {
+            const modal = document.getElementById('custom-modal');
+            const card = document.getElementById('modal-card');
+
+            card.classList.remove('modal-enter');
+            modal.classList.add('opacity-0');
+            card.classList.remove('scale-100');
+            card.classList.add('scale-90');
+
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+    </script>
+</body>
+</html>
